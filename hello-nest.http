@@ -1,0 +1,19 @@
+### Get Cat
+GET http://localhost:3000/Cat
+
+### Post Cat
+POST http://localhost:3000/Cat
+
+
+### cats
+GET http://localhost:3000/cats
+
+### createCat
+POST http://localhost:3000/cats
+Content-Type: application/json
+
+{
+  "name": "realtong",
+  "age": "18",
+  "breed": "chinese to gou"
+}
