@@ -1,5 +1,6 @@
 import {Controller, Get, Post, Body, Res,HttpStatus} from "@nestjs/common";
 import {Response} from "express";
+import {CatsService} from "./cats.service";
 
 export class CreateCatDto {
   name: string;
@@ -9,16 +10,16 @@ export class CreateCatDto {
 
 @Controller("cats")
 export class CatsController {
+  constructor(private catsService:CatsService) {}
 
-  @Get()
-  async findAll(@Res() res:Response){
-    await res.status(HttpStatus.NOT_FOUND).json({
-      message:"findAll not found",
-    });
-  }
 
   @Post()
   async createCat(@Res() res: Response, @Body() createCatDto: CreateCatDto) {
-    await res.status(HttpStatus.OK).json([]);
+    res.status(HttpStatus.OK).json(this.catsService.create(createCatDto));
+  }
+
+  @Get()
+  async findAll(@Res() res:Response){
+    await res.status(HttpStatus.OK).json(this.catsService.findAll());
   }
 }
